@@ -1,11 +1,16 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from "cypress"
+import { config } from "dotenv"
 
-module.exports = defineConfig({
-  allowCypressEnv: false,
+config()
 
+export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
     },
-  },
-});
+    env: {
+      "baseUrl":process.env.BASE_URL,
+      "login": process.env.LOGIN,
+      "password": process.env.PASSWORD
+    }
+  }
+})
